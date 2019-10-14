@@ -40,7 +40,7 @@ set mouse=a
 "Break column width to 80
 set linebreak
 set showbreak=+++
-set columns=80
+"set columns=80
 
 "Highlight 80th column using subtle line
 set colorcolumn=80
