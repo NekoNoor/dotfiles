@@ -15,6 +15,7 @@ alias gitdiff 'git --no-pager diff master'
 alias vim 'nvim'
 alias vi 'nvim'
 alias diff 'diff --color'
+alias gitdiff 'git --no-pager diff --cached'
 
 # unicorn greeting
 function fish_greeting
