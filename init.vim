@@ -1,34 +1,53 @@
+" **************************************************************************** "
+"                                                                              "
+"                                                         ::::::::             "
+"    init.vim                                           :+:    :+:             "
+"                                                      +:+                     "
+"    By: nschat <nschat@student.codam.nl>             +#+                      "
+"                                                    +#+                       "
+"    Created: 2019/10/28 17:46:48 by nschat        #+#    #+#                  "
+"    Updated: 2019/10/28 17:46:50 by nschat        ########   odam.nl          "
+"                                                                              "
+" **************************************************************************** "
+
 "Plugin directory
 call plug#begin('~/.local/share/nvim/plugged')
 
-"Autocomplete
+"Ncm2 autocomplete
 Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
 Plug 'ncm2/ncm2-pyclang'
-Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-racer'
+Plug 'ncm2/ncm2-jedi'
+Plug 'ncm2/ncm2-vim'
+Plug 'ncm2/ncm2-syntax'
+Plug 'fgrsnau/ncm2-otherbuf'
+Plug 'ncm2/ncm2-neoinclude'
+Plug 'ncm2/ncm2-github'
 
-"Required for ncm2
-Plug 'roxma/nvim-yarp'
-
-"Syntastic
+"Linter
 Plug 'vim-syntastic/syntastic'
 
-"NERDCommenter
+"Something with comments
 Plug 'scrooloose/nerdcommenter'
 
 "Fugitive for merge conflicts
 Plug 'tpope/vim-fugitive'
 
+"GDB/LLDB wrapper
+Plug 'sakhnik/nvim-gdb', {'do': ':!./install.sh \| UpdateRemotePlugins'}
+
+"Teach a vim to fish
+Plug 'dag/vim-fish'
+
 "End of plug block
 call plug#end()
 
-"Enable python3
-let g:python3_host_prog='/usr/bin/python3'
-
-"Set ncm2 clang path
-let g:ncm2_pyclang#library_path='/usr/lib/libclang.so'
-
-"Ncm2PopupOpen
+"Settings for ncm2
+let g:ncm2_pyclang#library_path = '/Library/Developer/CommandLineTools/usr/lib/'
+autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
 
 "Enable syntax highlighting
@@ -40,7 +59,6 @@ set mouse=a
 "Break column width to 80
 set linebreak
 set showbreak=+++
-"set columns=80
 
 "Highlight 80th column using subtle line
 set colorcolumn=80
@@ -100,26 +118,16 @@ set undodir=$HOME/.config/nvim/undo
 set undolevels=1000
 set undoreload=10000
 
-"Add Shebang to *.sh files and make executable
+"Share clipboard with macOS
+set clipboard=unnamedplus
+
+"Add Stdheader to source/shell files and make shell executable
 augroup scripts
-    autocmd!
-    autocmd BufNewFile *.sh Stdheader
-    autocmd BufWritePost *.sh !chmod +x <afile>
-    autocmd BufNewFile *.fish Stdheader
-    autocmd BufWritePost *.fish !chmod +x <afile>
+	autocmd!
+	autocmd BufNewFile Makefile Stdheader
+	autocmd BufNewFile *.{sh,fish,c,h} Stdheader
+	autocmd BufWritePost *.{sh,fish} !chmod +x <afile>
 augroup END
 
-"Add 42 header to *.c/*.h files
-augroup cfiles
-    autocmd!
-    autocmd BufNewFile *.c Stdheader
-    autocmd BufNewFile *.h Stdheader
-	autocmd BufRead,BufNewFile *.c setlocal textwidth=80
-	autocmd BufRead,BufNewFile *.h setlocal textwidth=80
-augroup END
-
-"Enable ncm for all buffers
-autocmd BufEnter * call ncm2#enable_for_buffer()
-
-"42 Stdheader
-source ~/.config/nvim/header.vim
+"Source Stdheader
+source /usr/share/vim/vim80/plugin/stdheader.vim
