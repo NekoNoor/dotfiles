@@ -6,7 +6,7 @@
 "    By: nschat <nschat@student.codam.nl>             +#+                      "
 "                                                    +#+                       "
 "    Created: 2019/10/28 17:46:48 by nschat        #+#    #+#                  "
-"    Updated: 2019/10/28 17:46:50 by nschat        ########   odam.nl          "
+"    Updated: 2019/10/28 18:06:20 by nschat        ########   odam.nl          "
 "                                                                              "
 " **************************************************************************** "
 
@@ -16,16 +16,20 @@ call plug#begin('~/.local/share/nvim/plugged')
 "Ncm2 autocomplete
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
+
+"Ncm2 Sources
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
-Plug 'ncm2/ncm2-pyclang'
-Plug 'ncm2/ncm2-racer'
-Plug 'ncm2/ncm2-jedi'
-Plug 'ncm2/ncm2-vim'
-Plug 'ncm2/ncm2-syntax'
-Plug 'fgrsnau/ncm2-otherbuf'
-Plug 'ncm2/ncm2-neoinclude'
 Plug 'ncm2/ncm2-github'
+Plug 'ncm2/ncm2-syntax'
+Plug 'shougo/neco-syntax'
+Plug 'ncm2/ncm2-neoinclude'
+Plug 'shougo/neoinclude.vim'
+Plug 'fgrsnau/ncm2-otherbuf'
+Plug 'ncm2/ncm2-jedi'
+Plug 'ncm2/ncm2-racer'
+Plug 'ncm2/ncm2-pyclang'
+Plug 'ncm2/ncm2-vim'
 
 "Linter
 Plug 'vim-syntastic/syntastic'
@@ -49,6 +53,9 @@ call plug#end()
 let g:ncm2_pyclang#library_path = '/Library/Developer/CommandLineTools/usr/lib/'
 autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
+
+"Set shell to fish
+set shell=fish
 
 "Enable syntax highlighting
 syntax on
