@@ -6,7 +6,7 @@
 "    By: nschat <nschat@student.codam.nl>             +#+                      "
 "                                                    +#+                       "
 "    Created: 2019/10/28 17:46:48 by nschat        #+#    #+#                  "
-"    Updated: 2020/04/25 04:00:30 by lyzbian       ########   odam.nl          "
+"    Updated: 2020/04/25 03:25:07 by lyzbian       ########   odam.nl          "
 "                                                                              "
 " **************************************************************************** "
 
@@ -96,12 +96,12 @@ let g:mkdp_auto_start = 1
 let g:mkdp_command_for_global = 1
 
 "Settings for ncm2
-let g:ncm2_pyclang#library_path = '/Library/Developer/CommandLineTools/usr/lib/'
+let g:ncm2_pyclang#library_path = '/usr/lib64/libclang.so.10'
 autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
 
 "Add include/ & libft/include to syntastic include dirs
-let g:syntastic_c_include_dirs = ["include", "libft/include"]
+let g:syntastic_c_include_dirs = ["include"]
 
 "Enable full python syntax highlighting
 let g:python_highlight_all = 1
