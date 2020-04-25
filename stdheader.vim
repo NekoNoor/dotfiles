@@ -6,7 +6,7 @@
 "    By: zaz <zaz@staff.42.fr>                      +#+  +:+       +#+         "
 "                                                 +#+#+#+#+#+   +#+            "
 "    Created: 2013/06/15 12:45:56 by zaz               #+#    #+#              "
-"    Updated: 2013/07/26 16:59:00 by zaz              ###   ########.fr        "
+"    Updated: 2020/04/25 03:38:41 by lyzbian       ########   odam.nl          "
 "                                                                              "
 " **************************************************************************** "
 
@@ -71,7 +71,7 @@ let s:marginlen		= 5
 let s:contentlen	= s:linelen - (3 * s:marginlen - 1) - strlen(s:asciiart[0])
 
 function s:trimlogin ()
-	let l:trimlogin = strpart($USER, 0, 9)
+	let l:trimlogin = strpart($HEADER_USER, 0, 9)
 	if strlen(l:trimlogin) == 0
 		let l:trimlogin = "marvin"
 	endif
