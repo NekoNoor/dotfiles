@@ -9,6 +9,7 @@ Collection of my dotfiles
 - place `init.vim` in `~/.config/nvim/`
 - place `stdheader.vim` in `~/.config/nvim/`
 - place `unicorn.cow` in `/usr/share/cows/`
+- set $HEADER_USER in your .bashrc or .zshrc to your intra login name (example: `export HEADER_USER=nschat`)
 
 ### notes:
 
