@@ -6,12 +6,15 @@
 "    By: nschat <nschat@student.codam.nl>             +#+                      "
 "                                                    +#+                       "
 "    Created: 2019/10/28 17:46:48 by nschat        #+#    #+#                  "
-"    Updated: 2020/04/25 03:25:07 by lyzbian       ########   odam.nl          "
+"    Updated: 2021/01/13 21:20:15 by nschat        ########   odam.nl          "
 "                                                                              "
 " **************************************************************************** "
 
 "Plugin directory
 call plug#begin('~/.local/share/nvim/plugged')
+
+"Neoterm
+Plug 'kassio/neoterm'
 
 "Ncm2 autocomplete
 Plug 'ncm2/ncm2'
@@ -43,7 +46,8 @@ Plug 'plasticboy/vim-markdown'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
 "Linter
-Plug 'vim-syntastic/syntastic'
+Plug 'dense-analysis/ale'
+"Plug 'vim-syntastic/syntastic'
 
 "Align tool
 Plug 'junegunn/vim-easy-align'
@@ -101,7 +105,11 @@ autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
 
 "Add include/ & libft/include to syntastic include dirs
-let g:syntastic_c_include_dirs = ["include"]
+"let g:syntastic_c_include_dirs = ["include"]
+
+"Enable makefile dry-runs
+let g:ale_linters = {'c': ['gcc'], 'c++': ['g++'] }
+let g:ale_c_parse_makefile = 1
 
 "Enable full python syntax highlighting
 let g:python_highlight_all = 1
@@ -140,8 +148,9 @@ hi ColorColumn ctermbg=8
 hi Pmenu ctermbg=0 ctermfg=7
 hi PmenuSel ctermbg=233 ctermfg=12
 
-"Split to right instead of left by default
+"Split to right/below instead of left/up by default
 set splitright
+set splitbelow
 
 "Hybrid line numbers and ruler
 set number
@@ -201,7 +210,7 @@ augroup scripts
 	autocmd StdinReadPre * let s:std_in=1
 	autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 	autocmd BufNewFile Makefile Stdheader
-	autocmd BufNewFile *.{sh,fish,c,h} Stdheader
+	autocmd BufNewFile *.{sh,fish,c,h,cpp,hpp} Stdheader
 	autocmd BufWritePost *.{sh,fish} !chmod +x <afile>
 	autocmd BufEnter *.{c,h} hi OverLength ctermbg=red ctermfg=white | match OverLength /\%81v.\+/
 	autocmd BufEnter *.todo call mkdp#util#open_preview_page()
