@@ -6,7 +6,7 @@
 "    By: nschat <nschat@student.codam.nl>             +#+                      "
 "                                                    +#+                       "
 "    Created: 2019/10/28 17:46:48 by nschat        #+#    #+#                  "
-"    Updated: 2021/12/13 15:42:36 by nschat        ########   odam.nl          "
+"    Updated: 2021/12/13 18:55:49 by nschat        ########   odam.nl          "
 "                                                                              "
 " **************************************************************************** "
 
@@ -94,7 +94,7 @@ let g:LanguageClient_serverCommands = {
 \ 'python': ['python-lsp-server'],
 \ }
 let g:ale_linters = {
-\ 'rust': ['rust-analyzer'],
+\ 'rust': ['analyzer'],
 \ 'cpp': ['clangd'],
 \ 'python': ['python-lsp-server'],
 \ }
