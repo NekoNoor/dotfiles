@@ -6,7 +6,7 @@
 "    By: nschat <nschat@student.codam.nl>             +#+                      "
 "                                                    +#+                       "
 "    Created: 2019/10/28 17:46:48 by nschat        #+#    #+#                  "
-"    Updated: 2021/01/13 21:20:15 by nschat        ########   odam.nl          "
+"    Updated: 2021/12/13 14:32:56 by nschat        ########   odam.nl          "
 "                                                                              "
 " **************************************************************************** "
 
@@ -20,6 +20,19 @@ Plug 'kassio/neoterm'
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
 
+"LanguageClient
+Plug 'autozimu/LanguageClient-neovim', {
+	\ 'branch': 'next',
+	\ 'do': 'bash install.sh',
+	\ }
+Plug 'junegunn/fzf'
+
+"Colorscheme
+Plug 'NLKNguyen/papercolor-theme'
+
+"RustPlay
+Plug 'mattn/webapi-vim'
+
 "Ncm2 Sources
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
@@ -29,10 +42,10 @@ Plug 'shougo/neco-vim'
 Plug 'ncm2/ncm2-neoinclude'
 Plug 'shougo/neoinclude.vim'
 Plug 'fgrsnau/ncm2-otherbuf'
-Plug 'ncm2/ncm2-jedi'
-Plug 'ncm2/ncm2-racer'
-Plug 'ncm2/ncm2-pyclang'
 Plug 'ncm2/ncm2-vim'
+
+"zoxide
+Plug 'nanotee/zoxide.vim'
 
 "Debugger
 Plug 'sakhnik/nvim-gdb', { 'do': ':UpdateRemotePlugins' }
@@ -47,10 +60,6 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
 "Linter
 Plug 'dense-analysis/ale'
-"Plug 'vim-syntastic/syntastic'
-
-"Align tool
-Plug 'junegunn/vim-easy-align'
 
 "Rainbow parentheses
 Plug 'junegunn/rainbow_parentheses.vim'
@@ -62,12 +71,6 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
-"Fugitive for merge conflicts
-Plug 'tpope/vim-fugitive'
-
-"GDB/LLDB wrapper
-Plug 'sakhnik/nvim-gdb', {'do': ':!./install.sh \| UpdateRemotePlugins'}
-
 "Teach a vim to fish
 Plug 'dag/vim-fish'
 
@@ -76,6 +79,31 @@ Plug 'vim-python/python-syntax'
 
 "End of plug block
 call plug#end()
+
+"fzf
+set rtp+=/Volumes/Homebrew/.brew/opt/fzf
+
+"set rust lsp
+let g:LanguageClient_serverCommands = {
+\ 'rust': ['rust-analyzer'],
+\ 'cpp': ['clangd'],
+\ 'python': ['python-lsp-server'],
+\ }
+let g:ale_linters = {
+\ 'rust': ['rust-analyzer'],
+\ 'cpp': ['clangd'],
+\ 'python': ['python-lsp-server'],
+\ }
+let g:ale_fixers = {
+\ '*': ['remove_trailing_lines', 'trim_whitespace'],
+\ 'rust': ['rustfmt'],
+\ 'cpp': ['clang-format'],
+\ }
+
+let g:ale_fix_on_save = 1
+
+"Norminette checker
+let g:norminette_exec = 'norminette'
 
 "Remap nvim-gdb keybinds
 function! NvimGdbNoTKeymaps()
@@ -100,7 +128,6 @@ let g:mkdp_auto_start = 1
 let g:mkdp_command_for_global = 1
 
 "Settings for ncm2
-let g:ncm2_pyclang#library_path = '/usr/lib64/libclang.so.10'
 autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
 
@@ -108,8 +135,8 @@ set completeopt=noinsert,menuone,noselect
 "let g:syntastic_c_include_dirs = ["include"]
 
 "Enable makefile dry-runs
-let g:ale_linters = {'c': ['gcc'], 'c++': ['g++'] }
-let g:ale_c_parse_makefile = 1
+"let g:ale_c_parse_makefile = 1
+"let g:ale_cpp_cc_options = '-Wall -Wextra -Werror -I include -I lib/libft/include -I lib/libgnl/include'
 
 "Enable full python syntax highlighting
 let g:python_highlight_all = 1
@@ -123,6 +150,11 @@ autocmd VimEnter * RainbowParentheses
 
 "Set shell to fish
 set shell=fish
+
+"Colors
+set termguicolors
+set background=dark
+colorscheme PaperColor
 
 "Enable syntax highlighting
 syntax on
