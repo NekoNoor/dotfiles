@@ -6,7 +6,7 @@
 "    By: nschat <nschat@student.codam.nl>             +#+                      "
 "                                                    +#+                       "
 "    Created: 2019/10/28 17:46:48 by nschat        #+#    #+#                  "
-"    Updated: 2021/12/13 14:49:51 by nschat        ########   odam.nl          "
+"    Updated: 2021/12/13 15:42:36 by nschat        ########   odam.nl          "
 "                                                                              "
 " **************************************************************************** "
 
@@ -76,6 +76,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 
 "Teach a vim to fish
 Plug 'dag/vim-fish'
+Plug 'rust-lang/rust.vim'
 
 "Proper python syntax highlighting
 Plug 'vim-python/python-syntax'
