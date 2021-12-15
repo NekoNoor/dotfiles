@@ -6,7 +6,7 @@
 #    By: nschat <nschat@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/28 17:46:37 by nschat        #+#    #+#                  #
-#    Updated: 2021/12/09 13:56:56 by nschat        ########   odam.nl          #
+#    Updated: 2021/12/14 15:38:43 by nschat        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,3 +42,5 @@ zoxide init fish | source
 fish_add_path $BREW_PREFIX/opt/openjdk/bin
 fish_add_path $BREW_PREFIX/opt/llvm/bin
 fish_add_path $HOME/.cargo/bin
+set -x C_INCLUDE_PATH /Volumes/SuperSoft/.brew/include
+set -x LIBRARY_PATH /Volumes/SuperSoft/.brew/lib

@@ -6,7 +6,7 @@
 "    By: nschat <nschat@student.codam.nl>             +#+                      "
 "                                                    +#+                       "
 "    Created: 2019/10/28 17:46:48 by nschat        #+#    #+#                  "
-"    Updated: 2021/12/13 18:55:49 by nschat        ########   odam.nl          "
+"    Updated: 2021/12/15 16:18:45 by nschat        ########   odam.nl          "
 "                                                                              "
 " **************************************************************************** "
 
@@ -56,6 +56,9 @@ Plug 'sakhnik/nvim-gdb', { 'do': ':UpdateRemotePlugins' }
 "Todo lists
 Plug 'aserebryakov/vim-todo-lists'
 
+"Git merge
+Plug 'tpope/vim-fugitive'
+
 "Markdown plugins
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
@@ -90,18 +93,19 @@ set rtp+=/Volumes/Homebrew/.brew/opt/fzf
 "set rust lsp
 let g:LanguageClient_serverCommands = {
 \ 'rust': ['rust-analyzer'],
+\ 'c': ['clangd'],
 \ 'cpp': ['clangd'],
 \ 'python': ['python-lsp-server'],
 \ }
 let g:ale_linters = {
 \ 'rust': ['analyzer'],
+\ 'c': ['clangd'],
 \ 'cpp': ['clangd'],
 \ 'python': ['python-lsp-server'],
 \ }
 let g:ale_fixers = {
 \ '*': ['remove_trailing_lines', 'trim_whitespace'],
 \ 'rust': ['rustfmt'],
-\ 'cpp': ['clang-format'],
 \ }
 
 let g:ale_fix_on_save = 1
