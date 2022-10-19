@@ -1,15 +1,3 @@
-" **************************************************************************** "
-"                                                                              "
-"                                                         ::::::::             "
-"    init.vim                                           :+:    :+:             "
-"                                                      +:+                     "
-"    By: nschat <nschat@student.codam.nl>             +#+                      "
-"                                                    +#+                       "
-"    Created: 2019/10/28 17:46:48 by nschat        #+#    #+#                  "
-"    Updated: 2021/12/15 16:18:45 by nschat        ########   odam.nl          "
-"                                                                              "
-" **************************************************************************** "
-
 "Plugin directory
 call plug#begin('~/.local/share/nvim/plugged')
 
@@ -242,19 +230,14 @@ set undoreload=10000
 "Share clipboard with macOS
 set clipboard=unnamedplus
 
-"Add Stdheader to source/shell files and make shell executable
+"Autocmds
 augroup scripts
 	autocmd!
 	autocmd StdinReadPre * let s:std_in=1
 	autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 	autocmd StdinReadPre * let s:std_in=1
 	autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
-	autocmd BufNewFile Makefile Stdheader
-	autocmd BufNewFile *.{sh,fish,c,h,cpp,hpp} Stdheader
 	autocmd BufWritePost *.{sh,fish} !chmod +x <afile>
 	autocmd BufEnter *.{c,h} hi OverLength ctermbg=red ctermfg=white | match OverLength /\%81v.\+/
 	autocmd BufEnter *.todo call mkdp#util#open_preview_page()
 augroup END
-
-"Source Stdheader
-source ~/.config/nvim/stdheader.vim
