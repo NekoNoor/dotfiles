@@ -39,7 +39,7 @@ Plug 'ncm2/ncm2-vim'
 Plug 'nanotee/zoxide.vim'
 
 "Debugger
-Plug 'sakhnik/nvim-gdb', { 'do': ':UpdateRemotePlugins' }
+"Plug 'sakhnik/nvim-gdb', { 'do': ':UpdateRemotePlugins' }
 
 "Todo lists
 Plug 'aserebryakov/vim-todo-lists'
